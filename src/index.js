@@ -113,7 +113,9 @@ class yleApi {
 
 	_findPlayableMedia(id, callback) {
 		this.getProgram(id, (err, program) => {
-			if(program && program.publicationEvent !== undefined) {
+			if(err) {
+				callback(err, null);
+			} else if(program && program.publicationEvent !== undefined) {
 				for (let event of program.publicationEvent) {
 					if(event.temporalStatus === EVENT_TEMPORAL_STATUS_CURRENTLY &&
 					   event.type === EVENT_TYPE_ONDEMAND_PUBLICATION) {
@@ -121,7 +123,7 @@ class yleApi {
 					}
 				}
 
-				callback(err, null);
+				callback('No matches', null);
 			} else {
 				callback('No matches', null);
 			}
