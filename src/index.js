@@ -26,10 +26,8 @@ class yleApi {
 				.segment('programs')
 				.segment('items')
 				.suffix('json')
-				.query({ app_id: this.appId,
-				         app_key: this.appKey,
-				         offset: queryOptions.offset || 0,
-				         order: queryOptions.order })
+				.query( Object.assign({ app_id: this.appId, app_key: this.appKey }),
+																queryOptions )
 				.toString();
 
 		request
@@ -45,12 +43,12 @@ class yleApi {
 			});
 	}
 
-	getProgram (id, callback) {
+	getProgram (programId, callback) {
 		let url =
 			URI(this.apiUrl)
 				.segment('programs')
 				.segment('items')
-				.segment(id)
+				.segment(programId)
 				.suffix('json')
 				.query({ app_id: this.appId,
 				         app_key: this.appKey })

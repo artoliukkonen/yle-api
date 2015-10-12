@@ -6,6 +6,8 @@ Client for YLE API (<http://developer.yle.fi/>).
 
 ## Installing
 
+You need NodeJS 0.12 or newer to use this library.
+
 Install the library with:
 
 	npm install yle-api
@@ -35,3 +37,7 @@ Require the library with your API keys as follows:
 
 	var yleApi = require('yle-api')({appId: '', appKey: '', decryptKey: ''});
 
+Fetch some programs
+	yleApi.getPrograms({q: 'Uutiset'}, function(error, response) {
+		// Response contains array of programs matching search term "Uutiset"
+	});
