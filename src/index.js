@@ -26,8 +26,8 @@ class yleApi {
 				.segment('programs')
 				.segment('items')
 				.suffix('json')
-				.query( Object.assign({ app_id: this.appId, app_key: this.appKey }),
-																queryOptions )
+				.query( Object.assign({ app_id: this.appId, app_key: this.appKey }
+															, queryOptions))
 				.toString();
 
 		request
